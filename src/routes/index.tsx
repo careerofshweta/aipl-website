@@ -12,8 +12,6 @@ import {
   Route as RouteIcon,
   Star,
   Trees,
-  Waves,
-  Dumbbell,
   Users,
   Camera,
   X,
