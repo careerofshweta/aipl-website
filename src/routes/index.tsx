@@ -24,7 +24,7 @@ import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
 import g4 from "@/assets/g4.jpg";
 import g5 from "@/assets/g5.jpg";
-import villa from "@/assets/villa.jpg";
+
 import { projects } from "@/components/site/projects-data";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { ContactForm } from "@/components/site/ContactForm";
