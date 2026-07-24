@@ -39,17 +39,17 @@ export const Route = createFileRoute("/")({
         content:
           "Discover AIPL DreamCity Ludhiana — a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
       },
-      { property: "og:title", content: "AIPL DreamCity Ludhiana — Luxury Living, Modern Lifestyle" },
+      { property: "og:title", content: "AIPL DreamCity Ludhiana — Luxury Township & Premium Plots" },
       {
         property: "og:description",
         content:
-          "A landmark integrated township in Ludhiana offering plots, villas, apartments and commercial spaces with premium amenities and excellent connectivity.",
+          "Discover AIPL DreamCity Ludhiana — a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
       },
       { property: "og:url", content: "/" },
-      { name: "twitter:title", content: "AIPL DreamCity Ludhiana" },
+      { name: "twitter:title", content: "AIPL DreamCity Ludhiana — Luxury Township & Premium Plots" },
       {
         name: "twitter:description",
-        content: "Luxury master-planned township on Chandigarh Road, Ludhiana.",
+        content: "Discover AIPL DreamCity Ludhiana — a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
