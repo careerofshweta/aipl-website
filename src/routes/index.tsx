@@ -10,11 +10,11 @@ import {
   ShieldCheck,
   Leaf,
   Route as RouteIcon,
-  Star,
   Trees,
   Users,
   Camera,
   X,
+  Phone,
 } from "lucide-react";
 import { useState } from "react";
 import hero from "@/assets/hero.jpg";
@@ -24,32 +24,45 @@ import g2 from "@/assets/g2.jpg";
 import g3 from "@/assets/g3.jpg";
 import g4 from "@/assets/g4.jpg";
 import g5 from "@/assets/g5.jpg";
+import g6 from "@/assets/g6.jpg";
+import g7 from "@/assets/g7.jpg";
+import g8 from "@/assets/g8.jpg";
+import g9 from "@/assets/g9.jpg";
+import g10 from "@/assets/g10.jpg";
+import g11 from "@/assets/g11.jpg";
+import g12 from "@/assets/g12.jpg";
 
 import { projects } from "@/components/site/projects-data";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { ContactForm } from "@/components/site/ContactForm";
 import { FadeUp, SectionHeader, Counter } from "@/components/site/ui";
+import { SiteVisitVideos } from "@/components/site/SiteVisitVideos";
+import { TestimonialsMarquee } from "@/components/site/TestimonialsMarquee";
+
+const HERO_VIDEO =
+  "https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AIPL DreamCity Ludhiana — Luxury Township & Premium Plots" },
+      { title: "AIPL DreamCity Ludhiana — Premium Residential & Commercial Plots" },
       {
         name: "description",
         content:
-          "Discover AIPL DreamCity Ludhiana — a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
+          "Zavira Realty presents AIPL DreamCity Ludhiana — a master-planned integrated township offering premium residential and commercial plots on Chandigarh Road.",
       },
-      { property: "og:title", content: "AIPL DreamCity Ludhiana — Luxury Township & Premium Plots" },
+      { property: "og:title", content: "AIPL DreamCity Ludhiana — Premium Residential & Commercial Plots" },
       {
         property: "og:description",
         content:
-          "Discover AIPL DreamCity Ludhiana — a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
+          "Zavira Realty presents AIPL DreamCity Ludhiana — a master-planned integrated township offering premium residential and commercial plots on Chandigarh Road.",
       },
       { property: "og:url", content: "/" },
-      { name: "twitter:title", content: "AIPL DreamCity Ludhiana — Luxury Township & Premium Plots" },
+      { name: "twitter:title", content: "AIPL DreamCity Ludhiana — Premium Residential & Commercial Plots" },
       {
         name: "twitter:description",
-        content: "Discover AIPL DreamCity Ludhiana — a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
+        content:
+          "Zavira Realty presents AIPL DreamCity Ludhiana — a master-planned integrated township offering premium residential and commercial plots on Chandigarh Road.",
       },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -59,16 +72,20 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "RealEstateAgent",
-          name: "AIPL DreamCity Ludhiana",
+          name: "Zavira Realty — AIPL DreamCity Ludhiana",
           description:
-            "Master-planned luxury township in Ludhiana offering premium plots, villas, apartments and commercial spaces.",
-          areaServed: "Ludhiana, Punjab, India",
+            "Authorised channel partners for AIPL DreamCity Ludhiana — premium residential and commercial plots.",
+          telephone: "+91 99151 63030",
+          email: "info@zavirarealty.com",
           address: {
             "@type": "PostalAddress",
-            addressLocality: "Ludhiana",
+            streetAddress: "Shop 11, 1st Floor, Omaxe The Lake Commercial",
+            addressLocality: "New Chandigarh",
+            postalCode: "140901",
             addressRegion: "Punjab",
             addressCountry: "IN",
           },
+          areaServed: "Ludhiana, Punjab, India",
         }),
       },
     ],
@@ -84,8 +101,9 @@ function HomePage() {
       <Projects />
       <WhyChooseUs />
       <Gallery />
+      <SiteVisitVideos />
       <Investment />
-      <Testimonials />
+      <TestimonialsMarquee />
       <Contact />
     </div>
   );
@@ -98,13 +116,24 @@ function Hero() {
       id="home"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster={hero}
+        preload="auto"
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src={HERO_VIDEO} type="video/mp4" />
+      </video>
       <img
         src={hero}
-        alt="AIPL DreamCity Ludhiana luxury township at dusk"
-        className="absolute inset-0 h-full w-full object-cover"
-        fetchPriority="high"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/55 to-background" />
       <div className="absolute inset-0 gradient-radial-hero" />
 
       <div className="container-x relative z-10 mx-auto max-w-7xl pt-24 text-center md:pt-0">
@@ -133,8 +162,8 @@ function Hero() {
           transition={{ duration: 0.9, delay: 0.25 }}
           className="mx-auto mt-6 max-w-xl text-base text-foreground/80 sm:text-lg"
         >
-          Luxury living with a modern lifestyle — a master-planned township of plots, villas,
-          apartments and thoughtful commercial spaces.
+          Premium residential & commercial plots in a master-planned integrated township — where
+          modern lifestyle meets long-term investment value.
         </motion.p>
 
         <motion.div
@@ -152,10 +181,16 @@ function Hero() {
           </a>
           <Link
             to="/contact"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-background/40 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur transition hover:bg-gold/10 hover:text-gold"
+          >
+            Book Site Visit
+          </Link>
+          <a
+            href="tel:+919915163030"
             className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/40 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur transition hover:border-gold hover:text-gold"
           >
-            Contact Us
-          </Link>
+            <Phone size={14} /> +91 99151 63030
+          </a>
         </motion.div>
 
         <motion.div
@@ -188,8 +223,8 @@ const aboutBlocks = [
   { icon: MapPin, title: "Location Benefits", body: "Positioned on Chandigarh Road, one of Ludhiana's fastest-appreciating growth corridors — with quick access to the city core, highways and social infrastructure." },
   { icon: Users, title: "Lifestyle", body: "A vibrant, low-density neighborhood with curated amenities that make everyday living feel effortless — from wellness to leisure to community events." },
   { icon: RouteIcon, title: "Infrastructure", body: "Underground utilities, wide RCC roads, storm-water management, dedicated power backup and 24×7 security create a future-ready foundation." },
-  { icon: TrendingUp, title: "Why Invest", body: "Strong developer credibility, a proven micro-market, and a limited inventory of premium plots and villas make DreamCity a compelling long-term hold." },
-  { icon: Star, title: "Premium Amenities", body: "Clubhouse, swimming pool, fitness zones, sports courts, kids' play areas and landscaped parks — everything you need, right within the township." },
+  { icon: TrendingUp, title: "Why Invest", body: "Strong developer credibility, a proven micro-market, and a limited inventory of premium plots make DreamCity a compelling long-term hold." },
+  { icon: ShieldCheck, title: "RERA Compliant", body: "Every plot on offer is transparent, RERA-registered and comes with clean documentation — invest with total peace of mind." },
 ];
 
 function About() {
@@ -207,9 +242,10 @@ function About() {
             </h2>
             <p className="mt-6 text-base leading-relaxed text-muted-foreground">
               AIPL DreamCity Ludhiana is designed as a modern integrated township that brings
-              together homes, retail and open spaces within a single master plan. Every avenue,
-              green pocket and amenity is composed to elevate the daily experience of its residents
-              — quiet, secure, and unmistakably premium.
+              together premium residential plots, commercial spaces and open green landscapes
+              within a single master plan. Every avenue, green pocket and amenity is composed to
+              elevate the daily experience of its residents — quiet, secure, and unmistakably
+              premium.
             </p>
             <div className="mt-8 grid grid-cols-3 gap-6">
               {[
@@ -279,7 +315,7 @@ function Projects() {
         <SectionHeader
           kicker="Curated Offerings"
           title={<>Projects within <span className="italic text-gold">DreamCity</span></>}
-          subtitle="From freehold plots to signature villas and premium commercial addresses — each offering is designed to hold long-term value."
+          subtitle="From residential plots to commercial spaces and high street retail — each offering is designed to hold long-term value."
         />
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
@@ -355,11 +391,18 @@ function WhyChooseUs() {
 
 /* ---------------- GALLERY ---------------- */
 const galleryItems = [
-  { src: g1, alt: "Clubhouse swimming pool", tall: true },
+  { src: g6, alt: "Aerial view of township avenues", tall: true, wide: true },
+  { src: g1, alt: "Clubhouse swimming pool" },
+  { src: g8, alt: "Grand illuminated entrance gate" },
+  { src: g7, alt: "Wide RCC township road at dusk" },
+  { src: g9, alt: "Landscaped central park", tall: true },
+  { src: g10, alt: "Marked residential plot" },
   { src: g2, alt: "Grand clubhouse lobby" },
+  { src: g11, alt: "Modern clubhouse exterior" },
   { src: g3, alt: "Landscaped township walkway" },
+  { src: g12, alt: "Aerial view of township road network", wide: true },
   { src: g4, alt: "Premium villa interior" },
-  { src: g5, alt: "Township grand entrance", tall: true },
+  { src: g5, alt: "Township grand entrance" },
 ];
 
 function Gallery() {
@@ -368,22 +411,22 @@ function Gallery() {
     <section id="gallery" className="relative py-24 md:py-32">
       <div className="container-x mx-auto max-w-7xl">
         <SectionHeader
-          kicker="Gallery"
+          kicker="Plot Gallery"
           title={<>A glimpse into <span className="italic text-gold">DreamCity</span></>}
-          subtitle="Curated visuals of amenities, landscapes and living spaces."
+          subtitle="Curated visuals of plots, roads, greenery, amenities and infrastructure."
         />
-        <div className="mt-14 grid auto-rows-[220px] grid-cols-2 gap-4 md:grid-cols-4 md:auto-rows-[240px]">
+        <div className="mt-14 grid auto-rows-[200px] grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:auto-rows-[220px]">
           {galleryItems.map((g, i) => (
             <motion.button
               key={i}
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.06 }}
+              transition={{ duration: 0.6, delay: i * 0.04 }}
               onClick={() => setLightbox(g.src)}
               className={`group relative overflow-hidden rounded-2xl border border-border/60 ${
                 g.tall ? "row-span-2" : ""
-              } ${i === 0 ? "md:col-span-2" : ""}`}
+              } ${g.wide ? "md:col-span-2" : ""}`}
             >
               <img
                 src={g.src}
@@ -478,75 +521,6 @@ function Investment() {
   );
 }
 
-/* ---------------- TESTIMONIALS ---------------- */
-const testimonials = [
-  {
-    name: "Rajiv & Neha Bansal",
-    role: "Villa Owners",
-    body: "The township genuinely feels curated — from the wide roads to the landscaping. Buying at DreamCity was one of our best long-term calls.",
-    rating: 5,
-  },
-  {
-    name: "Harmanpreet Singh",
-    role: "Plot Investor",
-    body: "Clear paperwork, straight communication, and visible progress on site. Everything a serious investor looks for in a real-estate purchase.",
-    rating: 5,
-  },
-  {
-    name: "Ananya Kapoor",
-    role: "Apartment Owner",
-    body: "The clubhouse, the green pockets, the sense of quiet — my family moved in six months ago and we don't miss the city noise at all.",
-    rating: 5,
-  },
-];
-
-function Testimonials() {
-  const [i, setI] = useState(0);
-  const t = testimonials[i];
-  return (
-    <section className="relative py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 gradient-radial-hero" />
-      <div className="container-x relative mx-auto max-w-4xl text-center">
-        <SectionHeader
-          kicker="Testimonials"
-          title={<>What our residents <span className="italic text-gold">say</span></>}
-        />
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mt-14 rounded-3xl border border-border/60 bg-surface/60 p-10 backdrop-blur-md"
-        >
-          <div className="flex justify-center gap-1 text-gold">
-            {Array.from({ length: t.rating }).map((_, k) => (
-              <Star key={k} size={16} className="fill-gold" />
-            ))}
-          </div>
-          <p className="mt-6 font-serif text-2xl leading-relaxed text-foreground/90 sm:text-3xl">
-            “{t.body}”
-          </p>
-          <div className="mt-6">
-            <p className="font-semibold text-foreground">{t.name}</p>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">{t.role}</p>
-          </div>
-        </motion.div>
-        <div className="mt-8 flex justify-center gap-2">
-          {testimonials.map((_, k) => (
-            <button
-              key={k}
-              onClick={() => setI(k)}
-              aria-label={`Testimonial ${k + 1}`}
-              className={`h-2 rounded-full transition-all ${
-                i === k ? "w-8 bg-gold" : "w-2 bg-border"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- CONTACT ---------------- */
 function Contact() {
   return (
@@ -558,15 +532,24 @@ function Contact() {
           subtitle="Share your requirements and our advisory team will curate the best options for you at DreamCity Ludhiana."
         />
         <div className="mt-14 grid gap-6 overflow-hidden rounded-3xl border border-border/60 bg-surface/60 backdrop-blur-md md:grid-cols-2">
-          <div className="relative min-h-[380px]">
+          <div className="relative flex min-h-[380px] flex-col">
             <iframe
-              title="AIPL DreamCity Ludhiana map"
-              src="https://www.google.com/maps?q=Chandigarh%20Road%20Ludhiana&output=embed"
+              title="Zavira Realty office map"
+              src="https://www.google.com/maps?q=Omaxe+The+Lake+Commercial+New+Chandigarh&output=embed"
               loading="lazy"
-              className="h-full min-h-[380px] w-full border-0"
+              className="h-full min-h-[380px] w-full flex-1 border-0"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent to-background/30" />
+            <div className="grid gap-3 border-t border-border/60 p-6 text-sm">
+              <div className="flex items-start gap-2">
+                <MapPin size={16} className="mt-0.5 text-gold shrink-0" />
+                <span className="text-muted-foreground">Shop 11, 1st Floor, Omaxe The Lake Commercial, New Chandigarh – 140901</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone size={16} className="text-gold shrink-0" />
+                <a href="tel:+919915163030" className="text-foreground hover:text-gold">+91 99151 63030</a>
+              </div>
+            </div>
           </div>
           <div className="p-8 md:p-10">
             <ContactForm />
