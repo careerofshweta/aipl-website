@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { SiteLogo } from "./Logo";
 
@@ -10,6 +10,9 @@ const links = [
   { to: "/projects", label: "Projects" },
   { to: "/contact", label: "Contact Us" },
 ] as const;
+
+export const SITE_PHONE = "+91 99151 63030";
+export const SITE_PHONE_HREF = "tel:+919915163030";
 
 export function SiteNavbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,7 +38,7 @@ export function SiteNavbar() {
     >
       <div className="container-x mx-auto flex h-16 max-w-7xl items-center justify-between md:h-20">
         <SiteLogo />
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {links.map((l) => (
             <Link
               key={l.to}
@@ -47,20 +50,29 @@ export function SiteNavbar() {
               {l.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            className="rounded-full gradient-gold px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
+          <a
+            href={SITE_PHONE_HREF}
+            className="inline-flex items-center gap-2 rounded-full gradient-gold px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
           >
-            Book a Visit
-          </Link>
+            <Phone size={14} /> Call {SITE_PHONE}
+          </a>
         </nav>
-        <button
-          aria-label="Toggle menu"
-          className="grid h-10 w-10 place-items-center rounded-md border border-border/60 md:hidden"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={18} /> : <Menu size={18} />}
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <a
+            href={SITE_PHONE_HREF}
+            aria-label="Call now"
+            className="grid h-10 w-10 place-items-center rounded-full gradient-gold text-primary-foreground shadow-md"
+          >
+            <Phone size={16} />
+          </a>
+          <button
+            aria-label="Toggle menu"
+            className="grid h-10 w-10 place-items-center rounded-md border border-border/60"
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X size={18} /> : <Menu size={18} />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -69,7 +81,7 @@ export function SiteNavbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-xl"
+            className="border-t border-border/60 bg-background/95 backdrop-blur-xl lg:hidden"
           >
             <div className="container-x mx-auto flex max-w-7xl flex-col py-3">
               {links.map((l) => (
@@ -82,12 +94,12 @@ export function SiteNavbar() {
                   {l.label}
                 </Link>
               ))}
-              <Link
-                to="/contact"
-                className="mt-4 rounded-full gradient-gold px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
+              <a
+                href={SITE_PHONE_HREF}
+                className="mt-4 inline-flex items-center justify-center gap-2 rounded-full gradient-gold px-5 py-2.5 text-center text-sm font-semibold text-primary-foreground"
               >
-                Book a Visit
-              </Link>
+                <Phone size={14} /> Call {SITE_PHONE}
+              </a>
             </div>
           </motion.div>
         )}
