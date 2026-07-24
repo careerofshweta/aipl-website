@@ -44,7 +44,7 @@ const g12 = "/assets/g12.jpg";
 
 export function HomePage() {
   return (
-    <div className="overflow-x-clip">
+    <div className="w-full max-w-full overflow-x-hidden">
       <Hero />
       <About />
       <Projects />
@@ -70,7 +70,7 @@ function Hero() {
         alt="AIPL DreamCity Ludhiana township at dusk"
         className="absolute inset-0 h-full w-full object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/55 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/68 via-background/48 to-background" />
       <div className="absolute inset-0 gradient-radial-hero" />
 
       <div className="container-x relative z-10 mx-auto max-w-7xl pt-24 text-center md:pt-0">
@@ -78,7 +78,7 @@ function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="inline-block rounded-full border border-gold/40 bg-background/40 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-gold backdrop-blur"
+          className="inline-block rounded-full border border-gold/45 bg-background/35 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.3em] text-gold backdrop-blur"
         >
           Integrated Township · Ludhiana
         </motion.span>
@@ -111,20 +111,20 @@ function Hero() {
         >
           <a
             href="#projects"
-            className="group inline-flex items-center gap-2 rounded-full gradient-gold px-7 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.04]"
+            className="group inline-flex items-center gap-2 rounded-full gradient-gold px-7 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] hover:shadow-[0_18px_38px_-24px_var(--gold)]"
           >
             Explore Projects
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </a>
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-background/40 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur transition hover:bg-gold/10 hover:text-gold"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/60 bg-background/45 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold/10 hover:text-gold"
           >
             Book Site Visit
           </Link>
           <a
             href="tel:+919915163030"
-            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/40 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur transition hover:border-gold hover:text-gold"
+            className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/45 px-7 py-3 text-sm font-semibold text-foreground backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:text-gold"
           >
             <Phone size={14} /> +91 99151 63030
           </a>
@@ -198,7 +198,7 @@ const aboutBlocks = [
 
 function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32">
+    <section id="about" className="light-section relative section-y">
       <div className="container-x mx-auto max-w-7xl">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <FadeUp>
@@ -223,7 +223,7 @@ function About() {
               ].map((s) => (
                 <div
                   key={s.k}
-                  className="rounded-xl border border-border/60 bg-surface/50 p-4 text-center"
+                  className="premium-card rounded-xl border border-border/60 bg-surface/60 p-4 text-center"
                 >
                   <div className="font-serif text-3xl text-gold">
                     <Counter to={s.v} suffix={s.s} />
@@ -236,14 +236,14 @@ function About() {
             </div>
           </FadeUp>
           <FadeUp delay={0.15}>
-            <div className="relative overflow-hidden rounded-2xl border border-border/60">
+            <div className="premium-card relative overflow-hidden rounded-2xl border border-border/60">
               <img
                 src={about}
                 alt="Aerial view of AIPL DreamCity township at dusk"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-background/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/55 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 rounded-xl glass p-4">
                 <p className="text-xs uppercase tracking-widest text-gold">Master-planned</p>
                 <p className="mt-1 font-serif text-lg">Integrated Township · Ludhiana</p>
@@ -252,7 +252,7 @@ function About() {
           </FadeUp>
         </div>
 
-        <div className="mt-20 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {aboutBlocks.map((b, i) => {
             const Icon = b.icon;
             return (
@@ -262,7 +262,7 @@ function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group rounded-2xl border border-border/60 bg-surface/50 p-6 transition hover:border-gold/50 hover:bg-surface"
+                className="premium-card group rounded-2xl border border-border/60 bg-surface/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-surface"
               >
                 <div className="grid h-11 w-11 place-items-center rounded-lg gradient-gold text-primary-foreground">
                   <Icon size={20} />
@@ -281,7 +281,7 @@ function About() {
 /* ---------------- PROJECTS ---------------- */
 function Projects() {
   return (
-    <section id="projects" className="relative py-24 md:py-32">
+    <section id="projects" className="light-section cream-band relative section-y">
       <div className="container-x mx-auto max-w-7xl">
         <SectionHeader
           kicker="Curated Offerings"
@@ -292,7 +292,7 @@ function Projects() {
           }
           subtitle="From residential plots to commercial spaces and high street retail — each offering is designed to hold long-term value."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <ProjectCard key={p.name} project={p} index={i} />
           ))}
@@ -345,8 +345,8 @@ const stats = [
 
 function WhyChooseUs() {
   return (
-    <section className="relative py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 gradient-radial-hero" />
+    <section className="light-section relative section-y">
+      <div className="pointer-events-none absolute inset-0 opacity-45 gradient-radial-hero" />
       <div className="container-x relative mx-auto max-w-7xl">
         <SectionHeader
           kicker="Why Choose Us"
@@ -357,14 +357,14 @@ function WhyChooseUs() {
             </>
           }
         />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {whys.map((w, i) => {
             const Icon = w.icon;
             return (
               <FadeUp
                 key={w.title}
                 delay={i * 0.05}
-                className="group rounded-2xl border border-border/60 bg-surface/50 p-7 transition hover:-translate-y-1 hover:border-gold/50"
+                className="premium-card group rounded-2xl border border-border/60 bg-surface/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-surface"
               >
                 <div className="grid h-12 w-12 place-items-center rounded-xl border border-gold/40 text-gold transition group-hover:gradient-gold group-hover:text-primary-foreground">
                   <Icon size={22} />
@@ -376,7 +376,7 @@ function WhyChooseUs() {
           })}
         </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-4 rounded-2xl border border-border/60 bg-surface/60 p-8 md:grid-cols-4">
+        <div className="premium-card mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-border/60 bg-surface/65 p-6 md:grid-cols-4 md:p-8">
           {stats.map((s) => (
             <div key={s.k} className="text-center">
               <div className="font-serif text-4xl text-gold sm:text-5xl">
@@ -406,13 +406,12 @@ const galleryItems = [
   { src: g3, alt: "Landscaped township walkway" },
   { src: g12, alt: "Aerial view of township road network", wide: true },
   { src: g4, alt: "Premium villa interior" },
-  { src: g5, alt: "Township grand entrance" },
 ];
 
 function Gallery() {
   const [lightbox, setLightbox] = useState<string | null>(null);
   return (
-    <section id="gallery" className="relative py-24 md:py-32">
+    <section id="gallery" className="light-section cream-band relative section-y">
       <div className="container-x mx-auto max-w-7xl">
         <SectionHeader
           kicker="Plot Gallery"
@@ -423,7 +422,7 @@ function Gallery() {
           }
           subtitle="Curated visuals of plots, roads, greenery, amenities and infrastructure."
         />
-        <div className="mt-14 grid auto-rows-[200px] grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:auto-rows-[220px]">
+        <div className="mt-10 grid auto-rows-[170px] grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:auto-rows-[190px] lg:auto-rows-[210px]">
           {galleryItems.map((g, i) => (
             <motion.button
               key={i}
@@ -432,7 +431,7 @@ function Gallery() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.04 }}
               onClick={() => setLightbox(g.src)}
-              className={`group relative overflow-hidden rounded-2xl border border-border/60 ${
+              className={`premium-card group relative overflow-hidden rounded-2xl border border-border/60 transition-all duration-300 hover:-translate-y-1 hover:border-gold/45 ${
                 g.tall ? "row-span-2" : ""
               } ${g.wide ? "md:col-span-2" : ""}`}
             >
@@ -442,7 +441,7 @@ function Gallery() {
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-70 transition-opacity group-hover:opacity-90" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/72 via-transparent to-transparent opacity-70 transition-opacity group-hover:opacity-90" />
               <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[10px] uppercase tracking-widest text-gold opacity-0 transition-opacity group-hover:opacity-100">
                 <Camera size={12} /> View
               </div>
@@ -453,7 +452,7 @@ function Gallery() {
 
       {lightbox && (
         <div
-          className="fixed inset-0 z-[60] grid place-items-center bg-background/90 p-4 backdrop-blur-md"
+          className="fixed inset-0 z-[60] grid place-items-center bg-black/88 p-4 backdrop-blur-md"
           onClick={() => setLightbox(null)}
         >
           <button
@@ -506,7 +505,7 @@ const investPoints = [
 
 function Investment() {
   return (
-    <section className="relative py-24 md:py-32">
+    <section className="light-section relative section-y">
       <div className="container-x mx-auto max-w-7xl">
         <SectionHeader
           kicker="Investment Benefits"
@@ -516,7 +515,7 @@ function Investment() {
             </>
           }
         />
-        <div className="relative mt-16">
+        <div className="relative mt-12">
           <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/50 to-transparent md:left-1/2" />
           <ul className="space-y-10">
             {investPoints.map((p, i) => {
@@ -534,7 +533,7 @@ function Investment() {
                     {i + 1}
                   </span>
                   <div
-                    className={`rounded-2xl border border-border/60 bg-surface/60 p-6 backdrop-blur-md ${
+                    className={`premium-card rounded-2xl border border-border/60 bg-surface/65 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-gold/45 ${
                       right ? "md:col-start-2" : "md:text-right"
                     }`}
                   >
@@ -554,7 +553,7 @@ function Investment() {
 /* ---------------- CONTACT ---------------- */
 function Contact() {
   return (
-    <section id="contact" className="relative py-24 md:py-32">
+    <section id="contact" className="light-section cream-band relative section-y">
       <div className="container-x mx-auto max-w-7xl">
         <SectionHeader
           kicker="Contact"
@@ -565,7 +564,7 @@ function Contact() {
           }
           subtitle="Share your requirements and our advisory team will curate the best options for you at DreamCity Ludhiana."
         />
-        <div className="mt-14 grid gap-6 overflow-hidden rounded-3xl border border-border/60 bg-surface/60 backdrop-blur-md md:grid-cols-2">
+        <div className="premium-card mt-10 grid gap-6 overflow-hidden rounded-3xl border border-border/60 bg-surface/65 backdrop-blur-md md:grid-cols-2">
           <div className="relative flex min-h-[380px] flex-col">
             <iframe
               title="Zavira Realty office map"

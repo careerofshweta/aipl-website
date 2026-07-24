@@ -6,8 +6,8 @@ import { SectionHeader } from "@/components/site/ui";
 
 export function ProjectsPage() {
   return (
-    <div className="pt-28 md:pt-32">
-      <section className="container-x mx-auto max-w-7xl pb-24">
+    <div className="light-page section-top">
+      <section className="container-x mx-auto max-w-7xl pb-16 md:pb-20">
         <SectionHeader
           kicker="Portfolio"
           title={
@@ -17,7 +17,7 @@ export function ProjectsPage() {
           }
           subtitle="Hover any card to preview the space in motion."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => (
             <ProjectCard key={p.name} project={p} index={i} />
           ))}

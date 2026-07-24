@@ -62,7 +62,7 @@ export function ContactForm() {
   };
 
   const field =
-    "w-full rounded-lg border border-border/70 bg-surface/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/70 outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/30";
+    "w-full rounded-lg border border-border/70 bg-surface-2/60 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground/75 outline-none transition-all duration-300 focus:border-gold focus:bg-surface-2/80 focus:ring-2 focus:ring-gold/30";
 
   return (
     <div className="relative">
@@ -134,7 +134,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="mt-2 inline-flex items-center justify-center gap-2 rounded-full gradient-gold px-6 py-3 text-sm font-semibold text-primary-foreground transition hover:scale-[1.02] disabled:opacity-70"
+          className="mt-2 inline-flex items-center justify-center gap-2 rounded-full gradient-gold px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02] disabled:opacity-70"
         >
           {submitting ? (
             <>

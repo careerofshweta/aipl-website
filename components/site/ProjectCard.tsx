@@ -17,10 +17,10 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 26, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.65, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={(e) => {
         setHover(true);
         const v = e.currentTarget.querySelector("video");
@@ -34,7 +34,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
           v.currentTime = 0;
         }
       }}
-      className="group relative overflow-hidden rounded-2xl border border-border/60 bg-surface/60 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_oklch(0.79_0.13_78_/_0.45)] hover:border-gold/50"
+      className="premium-card group relative overflow-hidden rounded-2xl border border-border/60 bg-surface/65 backdrop-blur-md transition-all duration-500 hover:-translate-y-1.5 hover:border-gold/50 hover:shadow-[0_32px_70px_-42px_var(--gold)]"
     >
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
@@ -56,7 +56,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
             hover ? "opacity-100" : "opacity-0"
           }`}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/86 via-black/24 to-transparent" />
         <div className="absolute left-4 top-4 flex items-center gap-1.5 rounded-full glass px-3 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-gold">
           <Play size={10} className="fill-gold" /> Preview
         </div>
@@ -67,7 +67,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
         </p>
         <h3 className="mt-2 font-serif text-2xl">{project.name}</h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{project.description}</p>
-        <button className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-colors hover:text-gold-soft">
+        <button className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-gold transition-all duration-300 hover:text-gold-soft">
           Know More{" "}
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
         </button>

@@ -4,9 +4,9 @@ import { SiteLogo } from "./Logo";
 
 export function SiteFooter() {
   return (
-    <footer className="relative mt-24 border-t border-border/60 bg-surface/60">
-      <div className="container-x mx-auto max-w-7xl py-14">
-        <div className="grid gap-10 md:grid-cols-4">
+    <footer className="light-section relative mt-0 border-t border-border/60 bg-surface/80">
+      <div className="container-x mx-auto max-w-7xl py-10 md:py-12">
+        <div className="grid gap-8 md:grid-cols-4">
           <div>
             <SiteLogo />
             <p className="mt-4 max-w-xs text-sm text-muted-foreground">
@@ -76,7 +76,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="grid h-9 w-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition hover:border-gold hover:text-gold"
+                className="grid h-9 w-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:text-gold"
               >
                 <Instagram size={16} />
               </a>
@@ -85,14 +85,14 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="grid h-9 w-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition hover:border-gold hover:text-gold"
+                className="grid h-9 w-9 place-items-center rounded-full border border-border/70 text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-gold hover:text-gold"
               >
                 <Facebook size={16} />
               </a>
             </div>
           </div>
         </div>
-        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row md:items-center">
+        <div className="mt-8 flex flex-col items-start justify-between gap-3 border-t border-border/60 pt-5 text-xs text-muted-foreground md:flex-row md:items-center">
           <p>© 2026 Zavira Realty. All rights reserved.</p>
           <p>Crafted for luxury living · RERA compliant</p>
         </div>

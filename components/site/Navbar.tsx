@@ -21,6 +21,7 @@ export function SiteNavbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const elevated = scrolled || pathname !== "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -34,7 +35,9 @@ export function SiteNavbar() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "backdrop-blur-xl bg-background/70 border-b border-border/60" : "bg-transparent"
+        elevated
+          ? "border-b border-[oklch(0.79_0.024_86_/_0.72)] bg-[oklch(0.985_0.008_88_/_0.9)] text-[oklch(0.205_0.026_252)] shadow-[0_18px_50px_-38px_oklch(0.45_0.08_80)] backdrop-blur-xl"
+          : "bg-transparent"
       }`}
     >
       <div className="container-x mx-auto flex h-16 max-w-7xl items-center justify-between md:h-20">
@@ -44,8 +47,12 @@ export function SiteNavbar() {
             <Link
               key={l.to}
               href={l.to}
-              className={`text-sm font-medium transition-colors hover:text-gold ${
-                pathname === l.to ? "text-gold" : "text-foreground/80"
+              className={`text-sm font-semibold transition-colors hover:text-gold ${
+                pathname === l.to
+                  ? "text-gold"
+                  : elevated
+                    ? "text-[oklch(0.32_0.024_252)]"
+                    : "text-foreground/80"
               }`}
             >
               {l.label}
@@ -53,7 +60,7 @@ export function SiteNavbar() {
           ))}
           <a
             href={SITE_PHONE_HREF}
-            className="inline-flex items-center gap-2 rounded-full gradient-gold px-5 py-2 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
+            className="inline-flex items-center gap-2 rounded-full gradient-gold px-5 py-2 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.02]"
           >
             <Phone size={14} /> Call {SITE_PHONE}
           </a>
@@ -68,7 +75,11 @@ export function SiteNavbar() {
           </a>
           <button
             aria-label="Toggle menu"
-            className="grid h-10 w-10 place-items-center rounded-md border border-border/60"
+            className={`grid h-10 w-10 place-items-center rounded-md border transition-colors ${
+              elevated
+                ? "border-[oklch(0.79_0.024_86_/_0.72)] text-[oklch(0.205_0.026_252)]"
+                : "border-border/60"
+            }`}
             onClick={() => setOpen((v) => !v)}
           >
             {open ? <X size={18} /> : <Menu size={18} />}
@@ -82,7 +93,7 @@ export function SiteNavbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="border-t border-border/60 bg-background/95 backdrop-blur-xl lg:hidden"
+            className="border-t border-[oklch(0.79_0.024_86_/_0.72)] bg-[oklch(0.985_0.008_88_/_0.97)] text-[oklch(0.205_0.026_252)] backdrop-blur-xl lg:hidden"
           >
             <div className="container-x mx-auto flex max-w-7xl flex-col py-3">
               {links.map((l) => (
@@ -90,7 +101,7 @@ export function SiteNavbar() {
                   key={l.to}
                   href={l.to}
                   className={`border-b border-border/40 py-3 text-sm font-medium ${
-                    pathname === l.to ? "text-gold" : "text-foreground/90"
+                    pathname === l.to ? "text-gold" : "text-[oklch(0.32_0.024_252)]"
                   }`}
                 >
                   {l.label}

@@ -42,10 +42,10 @@ export function FadeUp({
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}
@@ -71,8 +71,12 @@ export function SectionHeader({
           {kicker}
         </span>
       )}
-      <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">{title}</h2>
-      {subtitle && <p className="mt-4 text-base text-muted-foreground">{subtitle}</p>}
+      <h2 className="font-serif text-3xl leading-tight text-foreground sm:text-4xl md:text-5xl">
+        {title}
+      </h2>
+      {subtitle && (
+        <p className="mt-3 text-base leading-relaxed text-muted-foreground">{subtitle}</p>
+      )}
     </FadeUp>
   );
 }

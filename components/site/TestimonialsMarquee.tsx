@@ -53,7 +53,7 @@ const testimonials: Testimonial[] = [
 
 function Card({ t }: { t: Testimonial }) {
   return (
-    <div className="mx-3 w-[320px] shrink-0 rounded-2xl border border-border/60 bg-surface/70 p-6 backdrop-blur-md sm:w-[380px]">
+    <div className="premium-card mx-3 w-[320px] shrink-0 rounded-2xl border border-border/60 bg-surface/75 p-6 backdrop-blur-md transition-colors duration-300 hover:border-gold/45 sm:w-[380px]">
       <div className="flex items-center gap-3">
         <img
           src={t.avatar}
@@ -83,8 +83,8 @@ export function TestimonialsMarquee() {
   const loop = [...testimonials, ...testimonials];
 
   return (
-    <section className="relative py-24 md:py-32">
-      <div className="pointer-events-none absolute inset-0 gradient-radial-hero" />
+    <section className="light-section cream-band relative section-y">
+      <div className="pointer-events-none absolute inset-0 opacity-35 gradient-radial-hero" />
       <div className="container-x relative mx-auto max-w-7xl">
         <SectionHeader
           kicker="Testimonials"
@@ -97,7 +97,7 @@ export function TestimonialsMarquee() {
         />
       </div>
       <div
-        className="relative mt-14 overflow-hidden"
+        className="relative mt-10 overflow-hidden"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >

@@ -44,8 +44,8 @@ const sections = [
 
 export function AboutPage() {
   return (
-    <div className="pt-28 md:pt-32">
-      <section className="container-x mx-auto max-w-7xl pb-16">
+    <div className="light-page section-top">
+      <section className="container-x mx-auto max-w-7xl pb-12 md:pb-16">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <FadeUp>
             <span className="text-xs font-semibold uppercase tracking-[0.3em] text-gold">
@@ -54,14 +54,14 @@ export function AboutPage() {
             <h1 className="mt-3 font-serif text-4xl leading-tight sm:text-6xl">
               An address that is <span className="italic text-gold">crafted, not built</span>
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
               AIPL DreamCity Ludhiana is a landmark master-planned township on Chandigarh Road,
               designed as an integrated community of premium plots, villas, apartments and
               commercial spaces — anchored by amenities that make daily life feel elevated.
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-flex items-center gap-2 rounded-full gradient-gold px-6 py-3 text-sm font-semibold text-primary-foreground"
+              className="mt-7 inline-flex items-center gap-2 rounded-full gradient-gold px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_35px_-24px_var(--gold)]"
             >
               Talk to an advisor <ArrowRight size={16} />
             </Link>
@@ -71,13 +71,13 @@ export function AboutPage() {
               src={about}
               alt="Aerial view of AIPL DreamCity township"
               loading="lazy"
-              className="w-full rounded-2xl border border-border/60 object-cover"
+              className="premium-card w-full rounded-2xl border border-border/60 object-cover"
             />
           </FadeUp>
         </div>
       </section>
 
-      <section className="container-x mx-auto max-w-7xl pb-24">
+      <section className="container-x mx-auto max-w-7xl pb-16 md:pb-20">
         <SectionHeader
           kicker="Every Detail Considered"
           title={
@@ -86,12 +86,12 @@ export function AboutPage() {
             </>
           }
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
           {sections.map((s, i) => (
             <FadeUp
               key={s.h}
               delay={i * 0.05}
-              className="rounded-2xl border border-border/60 bg-surface/50 p-7"
+              className="premium-card rounded-2xl border border-border/60 bg-surface/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/45 hover:bg-surface"
             >
               <h3 className="font-serif text-2xl">{s.h}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{s.p}</p>

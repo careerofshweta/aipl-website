@@ -37,7 +37,7 @@ export function SiteVisitVideos() {
   const [active, setActive] = useState<SiteVisit | null>(null);
 
   return (
-    <section id="site-visits" className="relative py-24 md:py-32">
+    <section id="site-visits" className="light-section relative section-y">
       <div className="container-x mx-auto max-w-7xl">
         <SectionHeader
           kicker="Site Visit Videos"
@@ -48,12 +48,12 @@ export function SiteVisitVideos() {
           }
           subtitle="Watch curated walk-throughs of the township, plots and lifestyle amenities before booking your on-site visit."
         />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {visits.map((v, i) => (
             <FadeUp key={v.title} delay={i * 0.08}>
               <button
                 onClick={() => setActive(v)}
-                className="group relative w-full overflow-hidden rounded-3xl border border-border/60 bg-surface/60 text-left shadow-[0_20px_60px_-30px_oklch(0.79_0.13_78_/_0.35)] transition hover:-translate-y-1 hover:border-gold/60"
+                className="premium-card group relative w-full overflow-hidden rounded-3xl border border-border/60 bg-surface/65 text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/60"
               >
                 <div className="relative aspect-video overflow-hidden">
                   <img
@@ -62,7 +62,7 @@ export function SiteVisitVideos() {
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/74 via-black/10 to-transparent" />
                   <div className="absolute inset-0 grid place-items-center">
                     <span className="grid h-16 w-16 place-items-center rounded-full gradient-gold text-primary-foreground shadow-xl transition-transform group-hover:scale-110">
                       <Play size={22} className="translate-x-0.5 fill-primary-foreground" />
@@ -85,7 +85,7 @@ export function SiteVisitVideos() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[70] grid place-items-center bg-background/90 p-4 backdrop-blur-md"
+            className="fixed inset-0 z-[70] grid place-items-center bg-black/88 p-4 backdrop-blur-md"
             onClick={() => setActive(null)}
           >
             <button
