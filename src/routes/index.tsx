@@ -116,22 +116,10 @@ function Hero() {
       id="home"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden"
     >
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        poster={hero}
-        preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src={HERO_VIDEO} type="video/mp4" />
-      </video>
       <img
         src={hero}
-        alt=""
-        aria-hidden="true"
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+        alt="AIPL DreamCity Ludhiana township at dusk"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-background/75 via-background/55 to-background" />
       <div className="absolute inset-0 gradient-radial-hero" />
