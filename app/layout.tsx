@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { SiteFooter } from "@/components/site/Footer";
+import { ContactPopup } from "@/components/site/ContactPopup";
 import { SiteNavbar } from "@/components/site/Navbar";
 import "@/styles/globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <SiteNavbar />
+        <ContactPopup />
         <main>{children}</main>
         <SiteFooter />
       </body>
