@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 import { FadeUp, SectionHeader } from "./ui";
@@ -14,27 +14,43 @@ export type SiteVisit = {
 
 const visits: SiteVisit[] = [
   {
-    title: "Township Walk-through",
-    description: "Take a guided tour through the master-planned avenues.",
+    title: "DreamCity Walk-through — English",
+    description: "Explore AIPL DreamCity through our complete English walk-through.",
     thumbnail: "/assets/g6.jpg",
-    video: "https://videos.pexels.com/video-files/2022395/2022395-hd_1920_1080_30fps.mp4",
+    video: "/videos/aipl-english.mp4",
   },
   {
-    title: "Plot Site Visit",
-    description: "See marked residential plots and boundary demarcations.",
+    title: "DreamCity Walk-through — Punjabi",
+    description: "Discover the project in detail with our Punjabi walk-through.",
     thumbnail: "/assets/g1.jpg",
-    video: "https://videos.pexels.com/video-files/2611250/2611250-hd_1920_1080_25fps.mp4",
+    video: "/videos/aipl-punjabi.mp4",
   },
   {
-    title: "Entrance & Clubhouse",
-    description: "A closer look at the grand entrance and lifestyle amenities.",
+    title: "The DreamCity Experience",
+    description: "Take a closer look at the vision, lifestyle and spaces of DreamCity.",
     thumbnail: "/assets/g8.jpg",
-    video: "https://videos.pexels.com/video-files/3129576/3129576-hd_1920_1080_25fps.mp4",
+    video: "/videos/aipl-dreamcity.mp4",
   },
 ];
 
 export function SiteVisitVideos() {
   const [active, setActive] = useState<SiteVisit | null>(null);
+
+  useEffect(() => {
+    if (!active) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setActive(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [active]);
 
   return (
     <section id="site-visits" className="light-section relative section-y">
@@ -48,28 +64,34 @@ export function SiteVisitVideos() {
           }
           subtitle="Watch curated walk-throughs of the township, plots and lifestyle amenities before booking your on-site visit."
         />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
           {visits.map((v, i) => (
-            <FadeUp key={v.title} delay={i * 0.08}>
+            <FadeUp key={v.title} delay={i * 0.08} className="h-full">
               <button
                 onClick={() => setActive(v)}
-                className="premium-card group relative w-full overflow-hidden rounded-3xl border border-border/60 bg-surface/65 text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/60"
+                aria-label={`Play ${v.title}`}
+                className="premium-card group relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-surface/65 text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
               >
-                <div className="relative aspect-video overflow-hidden">
-                  <img
-                    src={v.thumbnail}
-                    alt={v.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-black">
+                  <video
+                    src={v.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/74 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/5" />
                   <div className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-full gradient-gold text-primary-foreground shadow-xl transition-transform group-hover:scale-110">
+                    <span className="grid h-16 w-16 place-items-center rounded-full gradient-gold text-primary-foreground shadow-xl transition-all group-hover:scale-110 group-hover:opacity-90">
                       <Play size={22} className="translate-x-0.5 fill-primary-foreground" />
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="flex flex-1 flex-col p-6">
                   <h3 className="font-serif text-xl">{v.title}</h3>
                   <p className="mt-1.5 text-sm text-muted-foreground">{v.description}</p>
                 </div>
@@ -85,6 +107,9 @@ export function SiteVisitVideos() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label={active.title}
             className="fixed inset-0 z-[70] grid place-items-center bg-black/88 p-4 backdrop-blur-md"
             onClick={() => setActive(null)}
           >
@@ -103,12 +128,14 @@ export function SiteVisitVideos() {
               className="w-full max-w-4xl overflow-hidden rounded-2xl border border-border/60 bg-black"
             >
               <video
+                key={active.video}
                 src={active.video}
                 poster={active.thumbnail}
                 controls
                 autoPlay
                 playsInline
-                className="aspect-video w-full"
+                preload="auto"
+                className="aspect-video w-full bg-black object-contain"
               />
               <div className="p-5">
                 <h4 className="font-serif text-xl">{active.title}</h4>

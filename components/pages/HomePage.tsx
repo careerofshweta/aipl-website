@@ -395,17 +395,28 @@ function WhyChooseUs() {
 
 /* ---------------- GALLERY ---------------- */
 const galleryItems = [
-  { src: g6, alt: "Aerial view of township avenues", tall: true, wide: true },
-  { src: g1, alt: "Clubhouse swimming pool" },
-  { src: g8, alt: "Grand illuminated entrance gate" },
-  { src: g7, alt: "Wide RCC township road at dusk" },
-  { src: g9, alt: "Landscaped central park", tall: true },
-  { src: g10, alt: "Marked residential plot" },
-  { src: g2, alt: "Grand clubhouse lobby" },
-  { src: g11, alt: "Modern clubhouse exterior" },
-  { src: g3, alt: "Landscaped township walkway" },
-  { src: g12, alt: "Aerial view of township road network", wide: true },
-  { src: g4, alt: "Premium villa interior" },
+  {
+    src: "/assets/dreamcity-gallery-entrance.webp",
+    alt: "AIPL DreamCity Ludhiana illuminated grand entrance",
+    tall: true,
+    wide: true,
+  },
+  {
+    src: "/assets/dreamcity-gallery-lake.jpg",
+    alt: "The scenic lake at AIPL DreamCity Ludhiana",
+  },
+  {
+    src: "/assets/dreamcity-gallery-roads.webp",
+    alt: "Wide landscaped roads within AIPL DreamCity",
+  },
+  {
+    src: "/assets/dreamcity-gallery-greens.webp",
+    alt: "Green open spaces and residences at AIPL DreamCity",
+  },
+  {
+    src: "/assets/dreamcity-gallery-security.webp",
+    alt: "Gated community security at AIPL DreamCity",
+  },
 ];
 
 function Gallery() {
