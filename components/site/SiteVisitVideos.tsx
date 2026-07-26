@@ -16,19 +16,19 @@ const visits: SiteVisit[] = [
   {
     title: "DreamCity Walk-through — English",
     description: "Explore AIPL DreamCity through our complete English walk-through.",
-    thumbnail: "/assets/g6.jpg",
+    thumbnail: "/assets/dreamcity-real/05.webp",
     video: "/videos/aipl-english.mp4",
   },
   {
     title: "DreamCity Walk-through — Punjabi",
     description: "Discover the project in detail with our Punjabi walk-through.",
-    thumbnail: "/assets/g1.jpg",
+    thumbnail: "/assets/dreamcity-real/12.webp",
     video: "/videos/aipl-punjabi.mp4",
   },
   {
     title: "The DreamCity Experience",
     description: "Take a closer look at the vision, lifestyle and spaces of DreamCity.",
-    thumbnail: "/assets/g8.jpg",
+    thumbnail: "/assets/dreamcity-real/18.webp",
     video: "/videos/aipl-dreamcity.mp4",
   },
 ];

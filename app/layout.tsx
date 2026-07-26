@@ -24,14 +24,14 @@ export const metadata: Metadata = {
       "Discover AIPL DreamCity Ludhiana - a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
     siteName: "AIPL DreamCity Ludhiana",
     type: "website",
-    images: ["/assets/hero.jpg"],
+    images: ["/assets/dreamcity-gallery-entrance.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: "AIPL DreamCity Ludhiana - Luxury Township & Premium Plots",
     description:
       "Discover AIPL DreamCity Ludhiana - a master-planned luxury township with premium residential plots, villas, commercial spaces and world-class amenities on Chandigarh Road.",
-    images: ["/assets/hero.jpg"],
+    images: ["/assets/dreamcity-gallery-entrance.webp"],
   },
 };
 

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
-  ChevronDown,
   MapPin,
   Building2,
   Sparkles,
@@ -28,15 +27,8 @@ import { SiteVisitVideos } from "@/components/site/SiteVisitVideos";
 import { SectionCarousel } from "@/components/site/SectionCarousel";
 import { TestimonialsMarquee } from "@/components/site/TestimonialsMarquee";
 
-const hero = "/assets/hero.jpg";
-const about = "/assets/about.jpg";
-const g3 = "/assets/g3.jpg";
-const g6 = "/assets/g6.jpg";
-const g7 = "/assets/g7.jpg";
-const g8 = "/assets/g8.jpg";
-const g9 = "/assets/g9.jpg";
-const g10 = "/assets/g10.jpg";
-const g12 = "/assets/g12.jpg";
+const hero = "/assets/dreamcity-gallery-entrance.webp";
+const about = "/assets/dreamcity-real/18.webp";
 
 export function HomePage() {
   return (
@@ -124,24 +116,6 @@ function Hero() {
             <Phone size={14} /> +91 99151 63030
           </a>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="pointer-events-none absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            <span>Scroll</span>
-            <motion.span
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.8 }}
-              className="grid h-9 w-9 place-items-center rounded-full border border-gold/40 text-gold"
-            >
-              <ChevronDown size={16} />
-            </motion.span>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
@@ -191,7 +165,16 @@ const aboutBlocks = [
   },
 ];
 
-const aboutImages = [about, g6, g7, g8, g9, g12, g10, g3];
+const aboutImages = [
+  "/assets/dreamcity-real/05.webp",
+  "/assets/dreamcity-real/18.webp",
+  "/assets/dreamcity-real/11.webp",
+  "/assets/dreamcity-real/06.webp",
+  "/assets/dreamcity-real/20.jpg",
+  "/assets/dreamcity-real/12.webp",
+  "/assets/dreamcity-real/19.webp",
+  "/assets/dreamcity-real/07.webp",
+];
 
 function About() {
   return (
@@ -236,7 +219,7 @@ function About() {
             <div className="premium-card relative overflow-hidden rounded-2xl border border-border/60">
               <img
                 src={about}
-                alt="Aerial view of AIPL DreamCity township at dusk"
+                alt="Landscaped lake at AIPL DreamCity Ludhiana"
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
@@ -449,24 +432,50 @@ const galleryItems = [
   {
     src: "/assets/dreamcity-gallery-entrance.webp",
     alt: "AIPL DreamCity Ludhiana illuminated grand entrance",
-    tall: true,
-    wide: true,
   },
   {
     src: "/assets/dreamcity-gallery-lake.jpg",
     alt: "The scenic lake at AIPL DreamCity Ludhiana",
   },
   {
-    src: "/assets/dreamcity-gallery-roads.webp",
+    src: "/assets/dreamcity-real/06.webp",
     alt: "Wide landscaped roads within AIPL DreamCity",
   },
   {
-    src: "/assets/dreamcity-gallery-greens.webp",
+    src: "/assets/dreamcity-real/11.webp",
     alt: "Green open spaces and residences at AIPL DreamCity",
   },
   {
     src: "/assets/dreamcity-gallery-security.webp",
     alt: "Gated community security at AIPL DreamCity",
+  },
+  {
+    src: "/assets/dreamcity-real/07.webp",
+    alt: "Completed residences within AIPL DreamCity Ludhiana",
+  },
+  {
+    src: "/assets/dreamcity-real/12.webp",
+    alt: "Strategically planned internal township road",
+  },
+  {
+    src: "/assets/dreamcity-real/14.webp",
+    alt: "International-standard sports court at DreamCity",
+  },
+  {
+    src: "/assets/dreamcity-real/16.webp",
+    alt: "Walking path beside the DreamCity lake",
+  },
+  {
+    src: "/assets/dreamcity-real/18.webp",
+    alt: "Landscaped lake and green open spaces at DreamCity",
+  },
+  {
+    src: "/assets/dreamcity-real/19.webp",
+    alt: "Sunset lakefront promenade at AIPL DreamCity",
+  },
+  {
+    src: "/assets/dreamcity-real/20.jpg",
+    alt: "Landscaped walking trail within the township",
   },
 ];
 
@@ -486,7 +495,7 @@ function Gallery() {
         />
         <SectionCarousel
           label="DreamCity site photos"
-          autoPlayMs={5200}
+          autoPlayMs={3500}
           itemClassName="basis-[90%] sm:basis-[70%] lg:basis-[55%]"
           className="mt-10"
         >

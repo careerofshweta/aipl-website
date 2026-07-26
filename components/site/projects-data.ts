@@ -14,7 +14,7 @@ export const projects: Project[] = [
     location: "AIPL DreamCity · Core",
     description:
       "Freehold residential plots on wide tree-lined avenues with fully underground utilities — a canvas for your dream home in a master-planned township.",
-    image: "/assets/plots.jpg",
+    image: "/assets/dreamcity-real/12.webp",
     video: VIDEO_B,
   },
   {
@@ -22,7 +22,7 @@ export const projects: Project[] = [
     location: "Business Spine",
     description:
       "Strategically located commercial plots along the primary township artery — ideal for offices, showrooms and lifestyle brands seeking high visibility.",
-    image: "/assets/commercial.jpg",
+    image: "/assets/dreamcity-real/05.webp",
     video: VIDEO_C,
   },
   {
@@ -30,7 +30,7 @@ export const projects: Project[] = [
     location: "Central Promenade",
     description:
       "A walkable retail promenade of boutique shops, cafés and experience stores, anchored by daily-needs and premium dining destinations.",
-    image: "/assets/retail.jpg",
+    image: "/assets/dreamcity-real/06.webp",
     video: VIDEO_D,
   },
   {
@@ -38,7 +38,7 @@ export const projects: Project[] = [
     location: "AIPL DreamCity · Phase 1",
     description:
       "Architecturally distinctive villa plots with private lawns and thoughtfully oriented facades — build a residence tailored to your lifestyle.",
-    image: "/assets/villa.jpg",
+    image: "/assets/dreamcity-real/07.webp",
     video: VIDEO_A,
   },
   {
@@ -46,7 +46,7 @@ export const projects: Project[] = [
     location: "Residential Enclave",
     description:
       "Contemporary apartment plots with skyline views and layouts optimized for cross-ventilation and modern family living.",
-    image: "/assets/apartments.jpg",
+    image: "/assets/dreamcity-real/09.webp",
     video: VIDEO_E,
   },
   {
@@ -54,7 +54,7 @@ export const projects: Project[] = [
     location: "Upcoming Phases",
     description:
       "Institutional-grade schools, wellness zones, sports arenas and mixed-use plots that will shape the next chapter of DreamCity.",
-    image: "/assets/future.jpg",
+    image: "/assets/dreamcity-real/18.webp",
     video: VIDEO_F,
   },
 ];
