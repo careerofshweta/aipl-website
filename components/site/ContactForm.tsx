@@ -8,6 +8,7 @@ type Form = {
   name: string;
   phone: string;
   email: string;
+  message: string;
   propertyType: string;
   budget: string;
 };
@@ -27,6 +28,7 @@ export function ContactForm() {
     name: "",
     phone: "",
     email: "",
+    message: "",
     propertyType: "",
     budget: "",
   });
@@ -58,7 +60,7 @@ export function ContactForm() {
     await new Promise((r) => setTimeout(r, 900));
     setSubmitting(false);
     setSuccess(true);
-    setForm({ name: "", phone: "", email: "", propertyType: "", budget: "" });
+    setForm({ name: "", phone: "", email: "", message: "", propertyType: "", budget: "" });
   };
 
   const field =
@@ -71,6 +73,9 @@ export function ContactForm() {
           <input
             className={field}
             placeholder="Full Name *"
+            aria-label="Full name"
+            name="name"
+            autoComplete="name"
             value={form.name}
             onChange={(e) => set("name", e.target.value)}
             maxLength={80}
@@ -82,6 +87,10 @@ export function ContactForm() {
             <input
               className={field}
               placeholder="Phone Number *"
+              aria-label="Phone number"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
               value={form.phone}
               onChange={(e) => set("phone", e.target.value)}
               maxLength={20}
@@ -92,6 +101,10 @@ export function ContactForm() {
             <input
               className={field}
               placeholder="Email (optional)"
+              aria-label="Email address"
+              name="email"
+              type="email"
+              autoComplete="email"
               value={form.email}
               onChange={(e) => set("email", e.target.value)}
               maxLength={120}
@@ -102,6 +115,8 @@ export function ContactForm() {
         <div>
           <select
             className={field}
+            aria-label="Property type"
+            name="propertyType"
             value={form.propertyType}
             onChange={(e) => set("propertyType", e.target.value)}
           >
@@ -119,6 +134,8 @@ export function ContactForm() {
         <div>
           <select
             className={field}
+            aria-label="Investment budget"
+            name="budget"
             value={form.budget}
             onChange={(e) => set("budget", e.target.value)}
           >
@@ -130,6 +147,17 @@ export function ContactForm() {
             ))}
           </select>
           {errors.budget && <p className="mt-1 text-xs text-destructive">{errors.budget}</p>}
+        </div>
+        <div>
+          <textarea
+            className={`${field} min-h-24 resize-y`}
+            placeholder="Message"
+            aria-label="Message"
+            name="message"
+            value={form.message}
+            onChange={(e) => set("message", e.target.value)}
+            maxLength={1000}
+          />
         </div>
         <button
           type="submit"

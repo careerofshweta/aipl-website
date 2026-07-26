@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
-import { FadeUp, SectionHeader } from "./ui";
+import { SectionHeader } from "./ui";
 
 export type SiteVisit = {
   title: string;
@@ -34,7 +34,9 @@ const visits: SiteVisit[] = [
 ];
 
 export function SiteVisitVideos() {
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [active, setActive] = useState<SiteVisit | null>(null);
+  const selected = visits[selectedIndex];
 
   useEffect(() => {
     if (!active) return;
@@ -64,40 +66,85 @@ export function SiteVisitVideos() {
           }
           subtitle="Watch curated walk-throughs of the township, plots and lifestyle amenities before booking your on-site visit."
         />
-        <div className="mt-10 grid items-stretch gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {visits.map((v, i) => (
-            <FadeUp key={v.title} delay={i * 0.08} className="h-full">
+        <div className="mx-auto mt-10 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            className="premium-card overflow-hidden rounded-3xl border border-border/60 bg-surface/65"
+          >
+            <button
+              type="button"
+              onClick={() => setActive(selected)}
+              aria-label={`Play ${selected.title}`}
+              className="group relative block aspect-video w-full overflow-hidden bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-gold"
+            >
+              <video
+                key={selected.video}
+                src={selected.video}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                tabIndex={-1}
+                className="h-full w-full object-contain"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/5" />
+              <div className="absolute inset-0 grid place-items-center">
+                <span className="grid h-16 w-16 place-items-center rounded-full gradient-gold text-primary-foreground shadow-xl transition-transform group-hover:scale-110">
+                  <Play size={22} className="translate-x-0.5 fill-primary-foreground" />
+                </span>
+              </div>
+              <div className="absolute inset-x-0 bottom-0 p-5 text-left sm:p-7">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-gold">
+                  Featured video
+                </p>
+                <h3 className="mt-1 font-serif text-xl text-white sm:text-2xl">{selected.title}</h3>
+                <p className="mt-1 hidden max-w-2xl text-sm text-white/75 sm:block">
+                  {selected.description}
+                </p>
+              </div>
+            </button>
+          </motion.div>
+
+          <div
+            className="mt-4 grid grid-cols-3 gap-2 sm:gap-4"
+            role="tablist"
+            aria-label="Choose a site video"
+          >
+            {visits.map((visit, index) => (
               <button
-                onClick={() => setActive(v)}
-                aria-label={`Play ${v.title}`}
-                className="premium-card group relative flex h-full w-full flex-col overflow-hidden rounded-3xl border border-border/60 bg-surface/65 text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-gold/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
+                key={visit.title}
+                type="button"
+                role="tab"
+                aria-selected={selectedIndex === index}
+                aria-label={`Show ${visit.title}`}
+                onClick={() => setSelectedIndex(index)}
+                className={`premium-card group overflow-hidden rounded-xl border text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold ${
+                  selectedIndex === index
+                    ? "border-gold bg-gold/10"
+                    : "border-border/60 bg-surface/65 hover:border-gold/50"
+                }`}
               >
-                <div className="relative aspect-video w-full shrink-0 overflow-hidden bg-black">
-                  <video
-                    src={v.video}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="auto"
-                    aria-hidden="true"
-                    tabIndex={-1}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={visit.thumbnail}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/5" />
-                  <div className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-full gradient-gold text-primary-foreground shadow-xl transition-all group-hover:scale-110 group-hover:opacity-90">
-                      <Play size={22} className="translate-x-0.5 fill-primary-foreground" />
-                    </span>
+                  <div className="absolute inset-0 grid place-items-center bg-black/25">
+                    <Play size={16} className="fill-white text-white" />
                   </div>
                 </div>
-                <div className="flex flex-1 flex-col p-6">
-                  <h3 className="font-serif text-xl">{v.title}</h3>
-                  <p className="mt-1.5 text-sm text-muted-foreground">{v.description}</p>
+                <div className="p-2.5 sm:p-4">
+                  <p className="line-clamp-2 text-xs font-semibold sm:text-sm">{visit.title}</p>
                 </div>
               </button>
-            </FadeUp>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

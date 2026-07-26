@@ -25,21 +25,17 @@ import { ProjectCard } from "@/components/site/ProjectCard";
 import { ContactForm } from "@/components/site/ContactForm";
 import { FadeUp, SectionHeader, Counter } from "@/components/site/ui";
 import { SiteVisitVideos } from "@/components/site/SiteVisitVideos";
+import { SectionCarousel } from "@/components/site/SectionCarousel";
 import { TestimonialsMarquee } from "@/components/site/TestimonialsMarquee";
 
 const hero = "/assets/hero.jpg";
 const about = "/assets/about.jpg";
-const g1 = "/assets/g1.jpg";
-const g2 = "/assets/g2.jpg";
 const g3 = "/assets/g3.jpg";
-const g4 = "/assets/g4.jpg";
-const g5 = "/assets/g5.jpg";
 const g6 = "/assets/g6.jpg";
 const g7 = "/assets/g7.jpg";
 const g8 = "/assets/g8.jpg";
 const g9 = "/assets/g9.jpg";
 const g10 = "/assets/g10.jpg";
-const g11 = "/assets/g11.jpg";
 const g12 = "/assets/g12.jpg";
 
 export function HomePage() {
@@ -48,10 +44,9 @@ export function HomePage() {
       <Hero />
       <About />
       <Projects />
-      <WhyChooseUs />
-      <Gallery />
       <SiteVisitVideos />
-      <Investment />
+      <Gallery />
+      <WhyChooseUs />
       <TestimonialsMarquee />
       <Contact />
     </div>
@@ -196,6 +191,8 @@ const aboutBlocks = [
   },
 ];
 
+const aboutImages = [about, g6, g7, g8, g9, g12, g10, g3];
+
 function About() {
   return (
     <section id="about" className="light-section relative section-y">
@@ -252,27 +249,43 @@ function About() {
           </FadeUp>
         </div>
 
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <SectionCarousel
+          label="About DreamCity"
+          autoPlayMs={4800}
+          itemClassName="basis-[88%] sm:basis-1/2 lg:basis-1/3"
+          className="mt-10"
+        >
           {aboutBlocks.map((b, i) => {
             const Icon = b.icon;
             return (
-              <motion.div
+              <motion.article
                 key={b.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="premium-card group rounded-2xl border border-border/60 bg-surface/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-surface"
+                className="premium-card group h-full overflow-hidden rounded-2xl border border-border/60 bg-surface/60 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-surface"
               >
-                <div className="grid h-11 w-11 place-items-center rounded-lg gradient-gold text-primary-foreground">
-                  <Icon size={20} />
+                <div className="relative aspect-[16/8] overflow-hidden">
+                  <img
+                    src={aboutImages[i]}
+                    alt=""
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
                 </div>
-                <h3 className="mt-4 font-serif text-xl">{b.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.body}</p>
-              </motion.div>
+                <div className="p-6">
+                  <div className="grid h-11 w-11 place-items-center rounded-lg gradient-gold text-primary-foreground">
+                    <Icon size={20} />
+                  </div>
+                  <h3 className="mt-4 font-serif text-xl">{b.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.body}</p>
+                </div>
+              </motion.article>
             );
           })}
-        </div>
+        </SectionCarousel>
       </div>
     </section>
   );
@@ -292,11 +305,15 @@ function Projects() {
           }
           subtitle="From residential plots to commercial spaces and high street retail — each offering is designed to hold long-term value."
         />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <SectionCarousel
+          label="Projects within DreamCity"
+          itemClassName="basis-[88%] sm:basis-1/2 lg:basis-1/3"
+          className="mt-10"
+        >
           {projects.map((p, i) => (
             <ProjectCard key={p.name} project={p} index={i} />
           ))}
-        </div>
+        </SectionCarousel>
       </div>
     </section>
   );
@@ -334,6 +351,36 @@ const whys = [
     title: "Excellent Connectivity",
     body: "Minutes from highways, business hubs, schools and medical care.",
   },
+  {
+    icon: TrendingUp,
+    title: "High Appreciation Potential",
+    body: "Ludhiana's Chandigarh Road corridor has consistently outperformed on price growth.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Trusted Developer",
+    body: "AIPL's track record spans townships, retail centres and residential communities.",
+  },
+  {
+    icon: RouteIcon,
+    title: "Direct Regional Access",
+    body: "Direct road access to highways, airport and inter-city transit.",
+  },
+  {
+    icon: Sparkles,
+    title: "Premium Lifestyle",
+    body: "Amenities and community design that keep every day elevated.",
+  },
+  {
+    icon: Building2,
+    title: "Growing Infrastructure",
+    body: "New schools, hospitals and workplaces are steadily maturing around the corridor.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Future Growth Opportunities",
+    body: "Planned commercial and institutional zones support long-term value creation.",
+  },
 ];
 
 const stats = [
@@ -357,14 +404,18 @@ function WhyChooseUs() {
             </>
           }
         />
-        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <SectionCarousel
+          label="Why choose DreamCity"
+          itemClassName="basis-[88%] sm:basis-1/2 lg:basis-1/4"
+          className="mt-10"
+        >
           {whys.map((w, i) => {
             const Icon = w.icon;
             return (
               <FadeUp
                 key={w.title}
                 delay={i * 0.05}
-                className="premium-card group rounded-2xl border border-border/60 bg-surface/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-surface"
+                className="premium-card group h-full rounded-2xl border border-border/60 bg-surface/60 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/50 hover:bg-surface"
               >
                 <div className="grid h-12 w-12 place-items-center rounded-xl border border-gold/40 text-gold transition group-hover:gradient-gold group-hover:text-primary-foreground">
                   <Icon size={22} />
@@ -374,7 +425,7 @@ function WhyChooseUs() {
               </FadeUp>
             );
           })}
-        </div>
+        </SectionCarousel>
 
         <div className="premium-card mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-border/60 bg-surface/65 p-6 md:grid-cols-4 md:p-8">
           {stats.map((s) => (
@@ -433,7 +484,12 @@ function Gallery() {
           }
           subtitle="Curated visuals of plots, roads, greenery, amenities and infrastructure."
         />
-        <div className="mt-10 grid auto-rows-[170px] grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 md:auto-rows-[190px] lg:auto-rows-[210px]">
+        <SectionCarousel
+          label="DreamCity site photos"
+          autoPlayMs={5200}
+          itemClassName="basis-[90%] sm:basis-[70%] lg:basis-[55%]"
+          className="mt-10"
+        >
           {galleryItems.map((g, i) => (
             <motion.button
               key={i}
@@ -442,9 +498,8 @@ function Gallery() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.04 }}
               onClick={() => setLightbox(g.src)}
-              className={`premium-card group relative overflow-hidden rounded-2xl border border-border/60 transition-all duration-300 hover:-translate-y-1 hover:border-gold/45 ${
-                g.tall ? "row-span-2" : ""
-              } ${g.wide ? "md:col-span-2" : ""}`}
+              aria-label={`Open ${g.alt}`}
+              className="premium-card group relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-border/60 transition-all duration-300 hover:-translate-y-1 hover:border-gold/45"
             >
               <img
                 src={g.src}
@@ -458,7 +513,7 @@ function Gallery() {
               </div>
             </motion.button>
           ))}
-        </div>
+        </SectionCarousel>
       </div>
 
       {lightbox && (
@@ -486,81 +541,6 @@ function Gallery() {
   );
 }
 
-/* ---------------- INVESTMENT TIMELINE ---------------- */
-const investPoints = [
-  {
-    title: "High Appreciation Potential",
-    body: "Ludhiana's Chandigarh Road corridor has consistently outperformed on price growth.",
-  },
-  {
-    title: "Trusted Developer",
-    body: "AIPL's track record spans townships, retail centres and residential communities.",
-  },
-  {
-    title: "Excellent Connectivity",
-    body: "Direct road access to highways, airport and inter-city transit.",
-  },
-  {
-    title: "Premium Lifestyle",
-    body: "Amenities and community design that keep every day elevated.",
-  },
-  {
-    title: "Growing Infrastructure",
-    body: "New schools, hospitals and workplaces are steadily maturing around the corridor.",
-  },
-  {
-    title: "Future Growth Opportunities",
-    body: "Planned commercial and institutional zones support long-term value creation.",
-  },
-];
-
-function Investment() {
-  return (
-    <section className="light-section relative section-y">
-      <div className="container-x mx-auto max-w-7xl">
-        <SectionHeader
-          kicker="Investment Benefits"
-          title={
-            <>
-              Why <span className="italic text-gold">DreamCity</span> is a smart hold
-            </>
-          }
-        />
-        <div className="relative mt-12">
-          <div className="absolute left-4 top-0 h-full w-px bg-gradient-to-b from-transparent via-gold/50 to-transparent md:left-1/2" />
-          <ul className="space-y-10">
-            {investPoints.map((p, i) => {
-              const right = i % 2 === 1;
-              return (
-                <motion.li
-                  key={p.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-60px" }}
-                  transition={{ duration: 0.6, delay: i * 0.05 }}
-                  className={`relative pl-12 md:grid md:grid-cols-2 md:gap-16 md:pl-0`}
-                >
-                  <span className="absolute left-2 top-2 grid h-6 w-6 place-items-center rounded-full gradient-gold text-[10px] font-bold text-primary-foreground md:left-1/2 md:-translate-x-1/2">
-                    {i + 1}
-                  </span>
-                  <div
-                    className={`premium-card rounded-2xl border border-border/60 bg-surface/65 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-gold/45 ${
-                      right ? "md:col-start-2" : "md:text-right"
-                    }`}
-                  >
-                    <h3 className="font-serif text-2xl">{p.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-                  </div>
-                </motion.li>
-              );
-            })}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 /* ---------------- CONTACT ---------------- */
 function Contact() {
   return (
@@ -575,13 +555,13 @@ function Contact() {
           }
           subtitle="Share your requirements and our advisory team will curate the best options for you at DreamCity Ludhiana."
         />
-        <div className="premium-card mt-10 grid gap-6 overflow-hidden rounded-3xl border border-border/60 bg-surface/65 backdrop-blur-md md:grid-cols-2">
-          <div className="relative flex min-h-[380px] flex-col">
+        <div className="premium-card mt-10 grid overflow-hidden rounded-3xl border border-border/60 bg-surface/65 backdrop-blur-md md:grid-cols-[0.85fr_1.15fr]">
+          <div className="relative flex min-h-[300px] flex-col">
             <iframe
               title="Zavira Realty office map"
               src="https://www.google.com/maps?q=Omaxe+The+Lake+Commercial+New+Chandigarh&output=embed"
               loading="lazy"
-              className="h-full min-h-[380px] w-full flex-1 border-0"
+              className="h-full min-h-[230px] w-full flex-1 border-0"
               referrerPolicy="no-referrer-when-downgrade"
             />
             <div className="grid gap-3 border-t border-border/60 p-6 text-sm">
@@ -599,7 +579,7 @@ function Contact() {
               </div>
             </div>
           </div>
-          <div className="p-8 md:p-10">
+          <div className="border-t border-border/60 p-6 sm:p-8 md:border-l md:border-t-0">
             <ContactForm />
           </div>
         </div>

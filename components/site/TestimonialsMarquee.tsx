@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
 import { Star } from "lucide-react";
+import { SectionCarousel } from "./SectionCarousel";
 import { SectionHeader } from "./ui";
 
 type Testimonial = {
@@ -53,7 +52,7 @@ const testimonials: Testimonial[] = [
 
 function Card({ t }: { t: Testimonial }) {
   return (
-    <div className="premium-card mx-3 w-[320px] shrink-0 rounded-2xl border border-border/60 bg-surface/75 p-6 backdrop-blur-md transition-colors duration-300 hover:border-gold/45 sm:w-[380px]">
+    <article className="premium-card h-full rounded-2xl border border-border/60 bg-surface/75 p-6 backdrop-blur-md transition-colors duration-300 hover:border-gold/45">
       <div className="flex items-center gap-3">
         <img
           src={t.avatar}
@@ -74,14 +73,11 @@ function Card({ t }: { t: Testimonial }) {
         ))}
       </div>
       <p className="mt-3 text-sm leading-relaxed text-muted-foreground">"{t.body}"</p>
-    </div>
+    </article>
   );
 }
 
 export function TestimonialsMarquee() {
-  const [paused, setPaused] = useState(false);
-  const loop = [...testimonials, ...testimonials];
-
   return (
     <section className="light-section cream-band relative section-y">
       <div className="pointer-events-none absolute inset-0 opacity-35 gradient-radial-hero" />
@@ -95,23 +91,16 @@ export function TestimonialsMarquee() {
           }
           subtitle="Real experiences from families and investors who have trusted Zavira Realty."
         />
-      </div>
-      <div
-        className="relative mt-10 overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
-        <motion.div
-          className="flex"
-          animate={{ x: paused ? undefined : ["0%", "-50%"] }}
-          transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+        <SectionCarousel
+          label="Client testimonials"
+          autoPlayMs={5000}
+          itemClassName="basis-[92%] md:basis-1/2"
+          className="mt-10"
         >
-          {loop.map((t, i) => (
-            <Card key={i} t={t} />
+          {testimonials.map((t) => (
+            <Card key={t.name} t={t} />
           ))}
-        </motion.div>
+        </SectionCarousel>
       </div>
     </section>
   );
