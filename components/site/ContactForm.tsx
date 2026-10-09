@@ -35,6 +35,7 @@ export function ContactForm() {
   const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const set = <K extends keyof Form>(k: K, v: Form[K]) => {
     setForm((f) => ({ ...f, [k]: v }));
@@ -56,11 +57,26 @@ export function ContactForm() {
   const onSubmit = async (ev: React.FormEvent) => {
     ev.preventDefault();
     if (!validate()) return;
+    setSubmitError("");
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 900));
-    setSubmitting(false);
-    setSuccess(true);
-    setForm({ name: "", phone: "", email: "", message: "", propertyType: "", budget: "" });
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = (await response.json().catch(() => null)) as { error?: string } | null;
+      if (!response.ok) throw new Error(result?.error || "Unable to submit your request.");
+
+      setSuccess(true);
+      setForm({ name: "", phone: "", email: "", message: "", propertyType: "", budget: "" });
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : "Unable to submit your request. Please try again.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const field =
@@ -69,6 +85,13 @@ export function ContactForm() {
   return (
     <div className="relative">
       <form onSubmit={onSubmit} className="grid gap-4">
+        <input
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
         <div>
           <input
             className={field}
@@ -172,6 +195,11 @@ export function ContactForm() {
             "Request a Callback"
           )}
         </button>
+        {submitError && (
+          <p role="alert" className="text-center text-sm text-destructive">
+            {submitError}
+          </p>
+        )}
       </form>
 
       {success && (
